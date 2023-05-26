@@ -1,0 +1,17 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+ 
+}
+.card{
+    background-color: #6d6767;
+    width: 20%;
+    text-align: center;
+}
+
+.card img{
+    width: 30%;;
+    background-color: white;
+}
+
