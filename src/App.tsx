@@ -9,7 +9,7 @@ import Filter from "./Filter";
 
 function App() {
   const cards = _cards as CardObj[];
-  const [filterProps, setFilterProps] = useState(JSON);
+  const [filterValue, setFilterValue] = useState("");
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
 
   useEffect(() => {
@@ -31,17 +31,19 @@ function App() {
     ).then((cardsData) => setCardsData(cardsData));
   }, []);
 
-
+  const handleFilterChange = (value: string) =>{
+    setFilterValue(value);
+  }
   
 
   return (
     <>
       <Header />
-      <Filter />
+      <Filter onFilterChange={handleFilterChange}/>
       
       <div className="cards">
         {cardsData
-          ?.filter((card) => card.points !== "undecided")
+          ?.filter((card) => card.points !== "undecided" && (filterValue == "" || card.color === filterValue))
           .sort((a, b) => (a.points < b.points ? -1 : 1))
           .map((card) => (
             <Card

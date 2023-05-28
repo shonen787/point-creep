@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import "./Filter.css"
+interface FilterProps {
+  onFilterChange: (value: string) => void;
+}
 
-export default function Filter() {
+export default function Filter({onFilterChange}: FilterProps) {
   const manaValue = [
     "white",
     "blue",
@@ -11,23 +15,36 @@ export default function Filter() {
     "multicolor",
   ];
   const [filterColor, setFilterColor] = useState("");
+
+  const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) =>{
+    const selectedFilter = e.target.value;
+    setFilterColor(selectedFilter);
+    onFilterChange(selectedFilter);
+  }
+
+
+
   return (
-    <label htmlFor="filterColor">
-      <p>Filter:</p>
+    <>
+    <label htmlFor="filterbar">
+    </label>
+
+      <p>Filter Bar:</p>
+      <span>Color: </span>
       <select
         id="filterColor"
         value={filterColor}
-        onChange={(e) => {
-          setFilterColor(e.target.value);
-        }}
+        onChange={handleFilterChange}
       >
-        <option />
-        {manaValue.map((filterColor) => (
-          <option key={filterColor} value={filterColor}>
-            {filterColor}
+        <option value="">All Colors</option>
+        {manaValue.map((color) => (
+          <option key={color} value={color}>
+            {color}
           </option>
         ))}
       </select>
-    </label>
+</>
+
+
   );
 } 
