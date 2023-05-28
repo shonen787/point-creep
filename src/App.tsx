@@ -9,7 +9,7 @@ import Filter from "./Filter";
 
 function App() {
   const cards = _cards as CardObj[];
-  const [filterValue, setFilterValue] = useState("");
+  const [filterValue, setFilterValue] = useState({color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
 
   useEffect(() => {
@@ -31,10 +31,22 @@ function App() {
     ).then((cardsData) => setCardsData(cardsData));
   }, []);
 
-  const handleFilterChange = (value: string) =>{
-    setFilterValue(value);
+  const handleFilterChange = (filter:{color: string, points: string}) =>{
+    setFilterValue({color: filter.color, points: filter.points});
   }
   
+  const handleFilter = (card: CardObj) => {
+    console.log(JSON.stringify(filterValue))
+      if (card.points === "undecided"){
+        return false;
+      }
+      if (filterValue.color === "" || card.color === filterValue.color){
+        if (filterValue.points === "" || card.points === filterValue.points){
+          return true
+        }
+      }
+      return false
+}
 
   return (
     <>
@@ -43,7 +55,7 @@ function App() {
       
       <div className="cards">
         {cardsData
-          ?.filter((card) => card.points !== "undecided" && (filterValue == "" || card.color === filterValue))
+          ?.filter(handleFilter)
           .sort((a, b) => (a.points < b.points ? -1 : 1))
           .map((card) => (
             <Card
