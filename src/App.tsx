@@ -6,10 +6,9 @@ import Card from "./Card";
 import Header from "./Header";
 import Filter from "./Filter";
 
-
 function App() {
   const cards = _cards as CardObj[];
-  const [filterValue, setFilterValue] = useState({color: "", points: "" });
+  const [filterValue, setFilterValue] = useState({ color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
 
   useEffect(() => {
@@ -31,45 +30,49 @@ function App() {
     ).then((cardsData) => setCardsData(cardsData));
   }, []);
 
-  const handleFilterChange = (filter:{color: string, points: string}) =>{
-    setFilterValue({color: filter.color, points: filter.points});
-  }
-  
+  const handleFilterChange = (filter: { color: string; points: string }) => {
+    setFilterValue({ color: filter.color, points: filter.points });
+  };
+
   const handleFilter = (card: CardObj) => {
-    console.log(JSON.stringify(filterValue))
-      if (card.points === "undecided"){
-        return false;
+    console.log(JSON.stringify(filterValue));
+    if (card.points === "undecided") {
+      return false;
+    }
+    if (filterValue.color === "" || card.color === filterValue.color) {
+      if (filterValue.points === "" || card.points === filterValue.points) {
+        return true;
       }
-      if (filterValue.color === "" || card.color === filterValue.color){
-        if (filterValue.points === "" || card.points === filterValue.points){
-          return true
-        }
-      }
-      return false
-}
+    }
+    return false;
+  };
 
   return (
     <>
       <Header />
-      <Filter onFilterChange={handleFilterChange}/>
-      
-      <div className="cards">
-        {cardsData
-          ?.filter(handleFilter)
-          .sort((a, b) => (a.points < b.points ? -1 : 1))
-          .map((card) => (
-            <Card
-              key={card.name}
-              name={card.name}
-              color={card.color}
-              points={card.points}
-              image_uri={card.image_uri}
-            />
-          ))}
+
+      <Filter onFilterChange={handleFilterChange} />
+
+      <div id="content">
+        <div className="sidebars"> </div>
+        <div className="cards">
+          {cardsData
+            ?.filter(handleFilter)
+            .sort((a, b) => (a.points < b.points ? -1 : 1))
+            .map((card) => (
+              <Card
+                key={card.name}
+                name={card.name}
+                color={card.color}
+                points={card.points}
+                image_uri={card.image_uri}
+              />
+            ))}
+        </div>
+        <div className="sidebars"></div>
       </div>
     </>
   );
 }
 
 export default App;
-

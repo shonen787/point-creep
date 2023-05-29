@@ -2,3 +2,19 @@
     margin: 0;
     padding: 0;
 }
+
+#filterbar{
+    background-color: #35403A;
+    font-size: 1.5em;  
+     
+}
+ select{
+    height: 30px;
+ }
+ option{
+    
+ }
+
+ span{
+    color: white;
+ }

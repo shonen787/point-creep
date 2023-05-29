@@ -1,17 +1,35 @@
+#root{
+    display: block;
+}
+
 .cards{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
- 
+    padding-top: 10px;
 }
+
 .card{
-    background-color: #6d6767;
-    width: 20%;
+    width: 15%;
     text-align: center;
+    padding-bottom: 5px;
 }
 
 .card img{
-    width: 50%;
-    background-color: white;
+    width: 80%;
 }
 
+.points{
+    font-size: 1.5rem;
+}
+
+.sidebars{
+    background-color: #BFBFB8;
+    width: 8%;
+    height: auto;
+}
+#content{
+    display: flex;
+    min-height: 95vh;
+    max-height: auto;
+}

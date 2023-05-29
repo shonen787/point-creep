@@ -2,14 +2,12 @@ import { CardObj } from "./types";
 
 const Card = (props: CardObj) => {
   return (
-    <div className="card">
-      <img src={props.image_uri} alt={props.name}></img>
-
-      <div>
-        <span>Point(s):</span>
-        {props.points}
+    <>
+      <div className="card">
+        <img src={props.image_uri} alt={props.name}></img>
+        <p className="points">Point(s): {props.points}</p>
       </div>
-    </div>
+    </>
   );
 };
 

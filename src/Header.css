@@ -1,5 +1,25 @@
 header {
     width: 100%;
-    background-color: orange;
-    height: 50px;
+    background-color: #232625;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+header h2{
+    padding-left: 10px;
+}
+ul {
+    text-align: right;
+    padding-right: 10px;
+}
+
+ul li{
+    display: inline;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: white;
+
+}
+
+h2{
+    color: white;
 }
