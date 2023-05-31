@@ -18,16 +18,14 @@ export default function Filter({ onFilterChange }: FilterProps) {
   const [filterColor, setFilterColor] = useState({ color: "", points: "" });
 
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const copy = structuredClone(filterColor);
-    console.log(e);
     if (e.target.id === "filterColor") {
-      copy.color = e.target.value;
-    }
+      filterColor.color = e.target.value;
+      }
     if (e.target.id === "filterPoints") {
-      copy.points = e.target.value;
-    }
-    setFilterColor(copy);
-    onFilterChange(copy);
+      filterColor.points = e.target.value;
+      }
+    setFilterColor(filterColor);
+    onFilterChange(filterColor);
   };
 
   return (

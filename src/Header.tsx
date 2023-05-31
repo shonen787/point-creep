@@ -4,9 +4,15 @@ function Header() {
     <header>
       <h2>Point Creep</h2>
       <ul>
-        <li>Home</li>
-        <li>Points</li>
-        <li>About</li>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/points">Points</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
       </ul>
     </header>
   );
