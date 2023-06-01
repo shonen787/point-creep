@@ -89,6 +89,12 @@ function Points() {
     setCardsData(updatedCardsData);
   }
 
+function clearMap(){
+  setSelectedCards(new Map<string,string>());
+  cardsData.map((card) => (card.isSelected = false));
+  setTotalPoints(0);
+}
+
   return (
     <>
       <Filter onFilterChange={handleFilterChange} />
@@ -98,7 +104,7 @@ function Points() {
           <p> Total Points: </p>
           <p>{totalPoints}</p>
           <SidebarCards cardsMap={selectedCards}/>
-          
+          <button onClick={clearMap}>Flush List</button>
         </div>
 
         <div className="cards">
