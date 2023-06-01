@@ -4,13 +4,14 @@ import { CardObj } from "./types";
 import _cards from "./assets/cards/cards.json";
 import Card from "./Card";
 import Filter from "./Filter";
+import SidebarCards from "./SideCards";
 
 function Points() {
   const cards = _cards as CardObj[];
   const [filterValue, setFilterValue] = useState({ color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [selectedCards, setSelectedCards] = useState(new Map());
+  const [selectedCards, setSelectedCards] = useState(new Map<string,string>());
 
   useEffect(() => {
     async function GetCardImage(card: CardObj): Promise<string> {
@@ -75,7 +76,7 @@ function Points() {
       ) {
         setSelectedCards((prevSelectedCards) => {
           const updatedMap = new Map(prevSelectedCards);
-          updatedMap.set(card.name, "");
+          updatedMap.set(card.name, card.points);
           return updatedMap;
         });
         card.isSelected = true;
@@ -96,6 +97,8 @@ function Points() {
         <div className="sidebars sidebar-left">
           <p> Total Points: </p>
           <p>{totalPoints}</p>
+          <SidebarCards cardsMap={selectedCards}/>
+          
         </div>
 
         <div className="cards">
