@@ -1,4 +1,5 @@
 import React from "react";
+import "./SideCards.css"
 
 interface SidebarCardsProps {
   cardsMap: Map<string, string>;
