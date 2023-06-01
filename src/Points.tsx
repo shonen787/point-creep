@@ -9,6 +9,8 @@ function Points() {
   const cards = _cards as CardObj[];
   const [filterValue, setFilterValue] = useState({ color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [selectedCards, setSelectedCards] = useState(new Map());
 
   useEffect(() => {
     async function GetCardImage(card: CardObj): Promise<string> {
@@ -34,7 +36,6 @@ function Points() {
   };
 
   const handleFilter = (card: CardObj) => {
-    console.log(JSON.stringify(filterValue));
     if (card.points === "undecided") {
       return false;
     }
@@ -46,12 +47,57 @@ function Points() {
     return false;
   };
 
+  function handleImageClick(card: CardObj) {
+    const updatedCardsData = structuredClone(cardsData);
+    const index = updatedCardsData.findIndex(
+      (c: CardObj) => c.name === card.name
+    );
+
+    console.log(card.isSelected);
+    if (card.isSelected) {
+      if (
+        totalPoints - parseInt(card.points) >= 0 &&
+        selectedCards.has(card.name)
+      ) {
+        setSelectedCards((prevSelectedCards) => {
+          const updatedMap = new Map(prevSelectedCards);
+          updatedMap.delete(card.name);
+          return updatedMap;
+        });
+        card.isSelected = false;
+        card.selection = "";
+        setTotalPoints((prevTotal) => prevTotal - parseInt(card.points));
+      }
+    } else {
+      if (
+        totalPoints + parseInt(card.points) <= 10 &&
+        !selectedCards.has(card.name)
+      ) {
+        setSelectedCards((prevSelectedCards) => {
+          const updatedMap = new Map(prevSelectedCards);
+          updatedMap.set(card.name, "");
+          return updatedMap;
+        });
+        card.isSelected = true;
+        card.selection = "selected";
+        setTotalPoints((prevTotal) => prevTotal + parseInt(card.points));
+      }
+    }
+
+    updatedCardsData[index] = card;
+    setCardsData(updatedCardsData);
+  }
+
   return (
     <>
       <Filter onFilterChange={handleFilterChange} />
 
       <div id="content">
-        <div className="sidebars"> </div>
+        <div className="sidebars sidebar-left">
+          <p> Total Points: </p>
+          <p>{totalPoints}</p>
+        </div>
+
         <div className="cards">
           {cardsData
             ?.filter(handleFilter)
@@ -63,10 +109,14 @@ function Points() {
                 color={card.color}
                 points={card.points}
                 image_uri={card.image_uri}
+                isSelected={card.isSelected}
+                selection=""
+                onClick={() => handleImageClick(card)}
               />
             ))}
         </div>
-        <div className="sidebars"></div>
+
+        <div className="sidebars sidebar-right"></div>
       </div>
     </>
   );

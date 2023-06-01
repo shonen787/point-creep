@@ -6,3 +6,10 @@
 body{
     background-color: #BFBFB8;
 }
+
+.selected{
+    border-style: dashed;
+    border-color: red;
+}
+
+.notSelected{}

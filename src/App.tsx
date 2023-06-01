@@ -16,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/points" element={<Points />} />
+          <Route path="*" element="404 page" /> {/* TODO */}
         </Routes>
       </BrowserRouter>
     </>
@@ -24,8 +25,6 @@ function App() {
 
 export default App;
 
-
 /*TODO
-1. A way to vote on the points of a card. 
-  
+  1. A way to vote on the points of a card. 
 */

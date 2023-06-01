@@ -20,10 +20,10 @@ export default function Filter({ onFilterChange }: FilterProps) {
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.id === "filterColor") {
       filterColor.color = e.target.value;
-      }
+    }
     if (e.target.id === "filterPoints") {
       filterColor.points = e.target.value;
-      }
+    }
     setFilterColor(filterColor);
     onFilterChange(filterColor);
   };
