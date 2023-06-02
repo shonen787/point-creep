@@ -44,3 +44,9 @@
     font-size: 1.5rem;
 }
 
+.sidebar-left {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+}

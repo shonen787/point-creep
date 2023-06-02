@@ -5,7 +5,7 @@ const Card = (props: CardObj) => {
     <>
       <div className={`card `}>
         <img
-          className={`${props.selection}`}
+          className={props.selection}
           src={props.image_uri}
           alt={props.name}
           onClick={props.onClick}

@@ -11,7 +11,7 @@ function Points() {
   const [filterValue, setFilterValue] = useState({ color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [selectedCards, setSelectedCards] = useState(new Map<string,string>());
+  const [selectedCards, setSelectedCards] = useState(new Map<string, string>());
 
   useEffect(() => {
     async function GetCardImage(card: CardObj): Promise<string> {
@@ -48,63 +48,55 @@ function Points() {
     return false;
   };
 
-  function handleImageClick(card: CardObj) {
-    const updatedCardsData = structuredClone(cardsData);
-    const index = updatedCardsData.findIndex(
-      (c: CardObj) => c.name === card.name
-    );
-
-    console.log(card.isSelected);
-    if (card.isSelected) {
-      if (
-        totalPoints - parseInt(card.points) >= 0 &&
-        selectedCards.has(card.name)
-      ) {
-        setSelectedCards((prevSelectedCards) => {
-          const updatedMap = new Map(prevSelectedCards);
-          updatedMap.delete(card.name);
-          return updatedMap;
-        });
+  function updateSelectedCards(isInSelectedCards: boolean, card: CardObj) {
+    setSelectedCards((prevSelectedCards) => {
+      const updatedMap = new Map(prevSelectedCards);
+      if (isInSelectedCards) {
+        updatedMap.delete(card.name);
         card.isSelected = false;
         card.selection = "";
-        setTotalPoints((prevTotal) => prevTotal - parseInt(card.points));
+        return updatedMap;
       }
-    } else {
-      if (
-        totalPoints + parseInt(card.points) <= 10 &&
-        !selectedCards.has(card.name)
-      ) {
-        setSelectedCards((prevSelectedCards) => {
-          const updatedMap = new Map(prevSelectedCards);
-          updatedMap.set(card.name, card.points);
-          return updatedMap;
-        });
-        card.isSelected = true;
-        card.selection = "selected";
-        setTotalPoints((prevTotal) => prevTotal + parseInt(card.points));
-      }
-    }
-
-    updatedCardsData[index] = card;
-    setCardsData(updatedCardsData);
+      // The card is not in the selected card list;
+      updatedMap.set(card.name, card.points);
+      card.isSelected = true;
+      card.selection = "selected";
+      return updatedMap;
+    });
   }
 
-function clearMap(){
-  setSelectedCards(new Map<string,string>());
-  cardsData.map((card) => (card.isSelected = false));
-  setTotalPoints(0);
-}
+  function handleImageClick(card: CardObj) {
+    if (card.isSelected) {
+      if (totalPoints - parseInt(card.points) >= 0) {
+        updateSelectedCards(true, card);
+        setTotalPoints((prevTotal) => prevTotal - parseInt(card.points));
+      }
+      return;
+    }
+    if (totalPoints + parseInt(card.points) <= 10) {
+      updateSelectedCards(false, card);
+      setTotalPoints((prevTotal) => prevTotal + parseInt(card.points));
+    }
+  }
+
+  function clearMap() {
+    setSelectedCards(new Map<string, string>());
+    cardsData.map((card) => (card.isSelected = false));
+    setTotalPoints(0);
+  }
 
   return (
     <>
       <Filter onFilterChange={handleFilterChange} />
 
       <div id="content">
-        <div className="sidebars sidebar-left">
-          <p> Total Points: </p>
-          <p>{totalPoints}</p>
-          <SidebarCards cardsMap={selectedCards}/>
-          <button onClick={clearMap}>Flush List</button>
+        <div className="sidebars">
+          <div className="sidebar-left">
+            <p> Total Points: </p>
+            <p>{totalPoints}</p>
+            <SidebarCards cardsMap={selectedCards} />
+            <button onClick={clearMap}>Flush List</button>
+          </div>
         </div>
 
         <div className="cards">

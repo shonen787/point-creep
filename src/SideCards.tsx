@@ -1,18 +1,17 @@
 import React from "react";
-import "./SideCards.css"
+import "./SideCards.css";
 
 interface SidebarCardsProps {
   cardsMap: Map<string, string>;
 }
 
-
 const SidebarCards: React.FC<SidebarCardsProps> = ({ cardsMap }) => {
   return (
-    <div className="sidebar-left">
+    <div>
       <p>Selected Cards:</p>
       <ul>
         {Array.from(cardsMap).map(([cardName, selection]) => (
-          <p className="sidebarcards"key={cardName}>
+          <p className="sidebarcards" key={cardName}>
             {cardName} - {selection}
           </p>
         ))}

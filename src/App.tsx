@@ -28,3 +28,7 @@ export default App;
 /*TODO
   1. A way to vote on the points of a card. 
 */
+
+/*TODO
+  Modify both filter components to be dynamically generated on avaiable card data based on the previous filter. 
+*/ 
