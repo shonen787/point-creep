@@ -7,17 +7,17 @@ interface SidebarCardsProps {
 
 const SidebarCards: React.FC<SidebarCardsProps> = ({ cardsMap }) => {
   return (
-    <div>
+    <div className="sidebarText">
       <p>Selected Cards:</p>
       <ul>
         {Array.from(cardsMap).map(([cardName, selection]) => (
-          <p className="sidebarcards" key={cardName}>
+          <p  key={cardName}>
             {cardName} - {selection}
           </p>
         ))}
       </ul>
     </div>
-  );
+  )
 };
 
 export default SidebarCards;

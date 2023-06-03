@@ -6,12 +6,17 @@ import Card from "./Card";
 import Filter from "./Filter";
 import SidebarCards from "./SideCards";
 
+
+
 function Points() {
   const cards = _cards as CardObj[];
   const [filterValue, setFilterValue] = useState({ color: "", points: "" });
   const [cardsData, setCardsData] = useState<CardObj[]>([]);
   const [totalPoints, setTotalPoints] = useState(0);
   const [selectedCards, setSelectedCards] = useState(new Map<string, string>());
+  const dropdownColorUpdate: string[] = [];
+  const dropdownPointsUpdate: string[] = [];
+
 
   useEffect(() => {
     async function GetCardImage(card: CardObj): Promise<string> {
@@ -34,16 +39,15 @@ function Points() {
 
   const handleFilterChange = (filter: { color: string; points: string }) => {
     setFilterValue({ color: filter.color, points: filter.points });
+    console.log(dropdownColorUpdate);
   };
 
   const handleFilter = (card: CardObj) => {
-    if (card.points === "undecided") {
-      return false;
-    }
-    if (filterValue.color === "" || card.color === filterValue.color) {
-      if (filterValue.points === "" || card.points === filterValue.points) {
-        return true;
-      }
+    if (
+      (filterValue.color === "" || card.color === filterValue.color)
+      &&
+      (filterValue.points === "" || card.points === filterValue.points)) {
+     return true;
     }
     return false;
   };
@@ -91,9 +95,9 @@ function Points() {
 
       <div id="content">
         <div className="sidebars">
-          <div className="sidebar-left">
-            <p> Total Points: </p>
-            <p>{totalPoints}</p>
+          <div className="sidebarText sidebar-left">
+            <p className="points_text"> Total Points: </p>
+            <p className="points_text">{totalPoints}</p>
             <SidebarCards cardsMap={selectedCards} />
             <button onClick={clearMap}>Flush List</button>
           </div>
@@ -103,7 +107,12 @@ function Points() {
           {cardsData
             ?.filter(handleFilter)
             .sort((a, b) => (a.points < b.points ? -1 : 1))
-            .map((card) => (
+            .map((card) => {
+              dropdownColorUpdate.push(card.color);
+              dropdownPointsUpdate.push(card.points);
+
+              return(
+                
               <Card
                 key={card.name}
                 name={card.name}
@@ -113,10 +122,11 @@ function Points() {
                 isSelected={card.isSelected}
                 selection=""
                 onClick={() => handleImageClick(card)}
-              />
-            ))}
+              />)
+   
+              })
+            }
         </div>
-
         <div className="sidebars sidebar-right"></div>
       </div>
     </>

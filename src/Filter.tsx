@@ -1,5 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import "./Filter.css";
+
+
+
 interface FilterProps {
   onFilterChange: (filter: { color: string; points: string }) => void;
 }
@@ -15,7 +18,7 @@ export default function Filter({ onFilterChange }: FilterProps) {
     "multicolor",
   ];
   const cardPoints = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  const [filterColor, setFilterColor] = useState({ color: "", points: "" });
+  const [filterColor, setFilterCards] = useState({ color: "", points: "" });
 
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.id === "filterColor") {
@@ -24,7 +27,7 @@ export default function Filter({ onFilterChange }: FilterProps) {
     if (e.target.id === "filterPoints") {
       filterColor.points = e.target.value;
     }
-    setFilterColor(filterColor);
+    setFilterCards(filterColor);
     onFilterChange(filterColor);
   };
 

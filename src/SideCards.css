@@ -5,3 +5,12 @@
   
 }
 
+.sidebarText{
+    font-size: 1.7em;
+}
+
+@media (max-width:1900px){
+    .sidebarText{
+        font-size: 1.2em;
+    }
+}

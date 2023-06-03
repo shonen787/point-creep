@@ -12,9 +12,10 @@
 }
 
 .sidebars {
-    /* background-color: #BFBFB8; */
+    background-color: #BFBFB8;
     width: 20%;
     height: auto;
+    border-style:double;
 }
 
 .sidebar-right{
@@ -24,7 +25,8 @@
 .cards{
     display: flex;
     flex-wrap:wrap;
-    width: 70%;
+    width: 60%;
+    margin-left:5%;
     padding-top: 10px;
     justify-content:flex-start;
 }
@@ -49,4 +51,23 @@
     position: sticky;
     top: 0;
 
+}
+
+.points_text{
+    font-size: 1.5em;
+}
+
+
+button{
+    font-size: 1.5em;
+}
+
+@media (max-width: 1900px) {
+    .points_text {
+        font-size: 1.2em;
+    }
+
+    .card{
+        width: 50%;
+    }
 }
