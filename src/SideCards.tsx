@@ -5,19 +5,23 @@ interface SidebarCardsProps {
   cardsMap: Map<string, string>;
 }
 
+function Removecard(){
+}
+
 const SidebarCards: React.FC<SidebarCardsProps> = ({ cardsMap }) => {
   return (
     <div className="sidebarText">
       <p>Selected Cards:</p>
       <ul>
         {Array.from(cardsMap).map(([cardName, selection]) => (
-          <p  key={cardName}>
+            <p key={cardName} className="CardList">
             {cardName} - {selection}
-          </p>
+            </p>
+
         ))}
       </ul>
     </div>
-  )
+  );
 };
 
 export default SidebarCards;

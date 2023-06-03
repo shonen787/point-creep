@@ -60,14 +60,35 @@
 
 button{
     font-size: 1.5em;
+    padding: 5px;
 }
 
-@media (max-width: 1900px) {
+
+
+button:hover{
+    background-color: rgb(20, 38, 54);
+    color: rgb(159, 151, 151);
+}
+
+
+.SideBarButtons{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#flushlist:hover {
+    background-color: rgb(255, 11, 56);
+    color: rgb(255, 252, 252);
+}
+
+
+@media (max-width: 1500px) {
     .points_text {
         font-size: 1.2em;
     }
 
     .card{
-        width: 50%;
+        width: 20%;
     }
 }

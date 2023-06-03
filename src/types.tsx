@@ -1,4 +1,3 @@
-
 export interface CardObj {
   name: string;
   points: string;

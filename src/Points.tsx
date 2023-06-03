@@ -6,8 +6,6 @@ import Card from "./Card";
 import Filter from "./Filter";
 import SidebarCards from "./SideCards";
 
-
-
 function Points() {
   const cards = _cards as CardObj[];
   const [filterValue, setFilterValue] = useState({ color: "", points: "" });
@@ -16,7 +14,6 @@ function Points() {
   const [selectedCards, setSelectedCards] = useState(new Map<string, string>());
   const dropdownColorUpdate: string[] = [];
   const dropdownPointsUpdate: string[] = [];
-
 
   useEffect(() => {
     async function GetCardImage(card: CardObj): Promise<string> {
@@ -44,10 +41,10 @@ function Points() {
 
   const handleFilter = (card: CardObj) => {
     if (
-      (filterValue.color === "" || card.color === filterValue.color)
-      &&
-      (filterValue.points === "" || card.points === filterValue.points)) {
-     return true;
+      (filterValue.color === "" || card.color === filterValue.color) &&
+      (filterValue.points === "" || card.points === filterValue.points)
+    ) {
+      return true;
     }
     return false;
   };
@@ -99,7 +96,10 @@ function Points() {
             <p className="points_text"> Total Points: </p>
             <p className="points_text">{totalPoints}</p>
             <SidebarCards cardsMap={selectedCards} />
-            <button onClick={clearMap}>Flush List</button>
+            <div className="SideBarButtons">
+              <button onClick={clearMap} id="flushlist">Flush List</button>
+              <button> Save Cards</button>
+            </div>
           </div>
         </div>
 
@@ -111,21 +111,19 @@ function Points() {
               dropdownColorUpdate.push(card.color);
               dropdownPointsUpdate.push(card.points);
 
-              return(
-                
-              <Card
-                key={card.name}
-                name={card.name}
-                color={card.color}
-                points={card.points}
-                image_uri={card.image_uri}
-                isSelected={card.isSelected}
-                selection=""
-                onClick={() => handleImageClick(card)}
-              />)
-   
-              })
-            }
+              return (
+                <Card
+                  key={card.name}
+                  name={card.name}
+                  color={card.color}
+                  points={card.points}
+                  image_uri={card.image_uri}
+                  isSelected={card.isSelected}
+                  selection=""
+                  onClick={() => handleImageClick(card)}
+                />
+              );
+            })}
         </div>
         <div className="sidebars sidebar-right"></div>
       </div>

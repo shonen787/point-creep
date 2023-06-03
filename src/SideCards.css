@@ -2,12 +2,35 @@
     background-color: #84847f;
     padding: 0 4px ;
     border-color: black;
-  
 }
 
 .sidebarText{
     font-size: 1.7em;
 }
+
+.CardList{
+    text-align: center;
+    background-color: rgb(147, 74, 74);
+    border-style: solid;
+    margin: 10px;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+        
+
+}
+.CardList:hover {
+  background-color: rgb(115, 48, 48);
+
+}
+
+.CardList:checked {
+    background-color: black;
+}
+
+
 
 @media (max-width:1900px){
     .sidebarText{

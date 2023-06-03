@@ -1,8 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import "./Filter.css";
 
-
-
 interface FilterProps {
   onFilterChange: (filter: { color: string; points: string }) => void;
 }

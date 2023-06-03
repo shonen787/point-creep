@@ -10,7 +10,7 @@ const Card = (props: CardObj) => {
           alt={props.name}
           onClick={props.onClick}
         ></img>
-        <p className="points">Point(s): {props.points}</p>
+        <p className="points">Point: {props.points}</p>
       </div>
     </>
   );

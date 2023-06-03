@@ -17,8 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/points" element={<Points />} />
-          <Route path="*" element={<Page404/>} />        
-          </Routes>
+          <Route path="*" element={<Page404 />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
@@ -32,4 +32,4 @@ export default App;
 
 /*TODO
   Modify both filter components to be dynamically generated on avaiable card data based on the previous filter. 
-*/ 
+*/
