@@ -1,24 +1,69 @@
-# Logs
-logs
+# Ignore compiled files
+*.class
+*.o
+*.pyc
+
+# Ignore package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Ignore log files
 *.log
+
+# Ignore IDE and editor files
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore build output directories
+/bin/
+/build/
+/dist/
+/node_modules/
+/out/
+
+# Ignore dependency files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Ignore configuration files
+.env
+config.js
+config.json
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Ignore sensitive or private information
+secret.key
+password.txt
+
+# Ignore generated documentation
+/doc/
+/docs/
+
+# Ignore generated files
+/generated/
+
+# Ignore personal settings files
+.settings/
+.sensetive/
+
+# Ignore temporary files
+*.tmp
+*.bak
+
+# Ignore miscellaneous files
+*.bak
+*.bak.*
+*.old
+*.old.*
+*.swp
+*~

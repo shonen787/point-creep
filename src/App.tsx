@@ -1,5 +1,4 @@
 import "./App.css";
-import _cards from "./assets/cards/cards.json";
 import Header from "./Header";
 import About from "./About";
 import Points from "./Points";

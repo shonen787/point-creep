@@ -5,8 +5,7 @@ interface SidebarCardsProps {
   cardsMap: Map<string, string>;
 }
 
-function Removecard(){
-}
+
 
 const SidebarCards: React.FC<SidebarCardsProps> = ({ cardsMap }) => {
   return (
@@ -14,10 +13,9 @@ const SidebarCards: React.FC<SidebarCardsProps> = ({ cardsMap }) => {
       <p>Selected Cards:</p>
       <ul>
         {Array.from(cardsMap).map(([cardName, selection]) => (
-            <p key={cardName} className="CardList">
+          <p key={cardName} className="CardList">
             {cardName} - {selection}
-            </p>
-
+          </p>
         ))}
       </ul>
     </div>

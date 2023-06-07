@@ -4,7 +4,11 @@ function Home() {
       <section>
         <h2>A Universe of Options</h2>
         <p>
-          Create your ultimate deck within a maximum limit of 10 points. Our innovative point system allows you to handpick powerful cards while ensuring a balanced and captivating gameplay. Will you harness the raw might of high-point cards or craft a synergistic masterpiece with low-point gems? The choice is yours!
+          Create your ultimate deck within a maximum limit of 10 points. Our
+          innovative point system allows you to handpick powerful cards while
+          ensuring a balanced and captivating gameplay. Will you harness the raw
+          might of high-point cards or craft a synergistic masterpiece with
+          low-point gems? The choice is yours!
         </p>
       </section>
 
@@ -51,7 +55,7 @@ function Home() {
           captivate your heart.
         </p>
       </section>
-     </div>
+    </div>
   );
 }
 

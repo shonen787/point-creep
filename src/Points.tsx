@@ -97,7 +97,9 @@ function Points() {
             <p className="points_text">{totalPoints}</p>
             <SidebarCards cardsMap={selectedCards} />
             <div className="SideBarButtons">
-              <button onClick={clearMap} id="flushlist">Flush List</button>
+              <button onClick={clearMap} id="flushlist">
+                Flush List
+              </button>
               <button> Save Cards</button>
             </div>
           </div>
